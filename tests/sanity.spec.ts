@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
-import LoginPage from './pages/LoginPage';
+import LoginPage from '../pages/LoginPage';
 import UserCredencislas from '../helpers/UserCredencials';
 import ApplicationURL from '../helpers/ApplicationURL';
+import ProductPage from '../pages/ProductsPage';
 
 test('test', async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -22,4 +23,9 @@ test('demo test 1', async ({ page }) => {
 test('demo test 2', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.LoginToApplication();
+    const productsPage = new ProductPage(page);
+    await productsPage.validatePageUrl(`${ApplicationURL.INVENTORY_PAGE_URL}`);
+    await productsPage.validateTitle('Products');
+
+
 });
