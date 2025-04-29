@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
 import LoginPage from '../pages/LoginPage';
-import UserCredencislas from '../helpers/UserCredencials';
+import * as process from 'process';
 import { ErrorMessages } from '../helpers/ErrorMessages';
-import ApplicationURL from '../helpers/ApplicationURL';
+import '../helpers/UserCredencials'; // Ensure this file sets environment variables
 
 
 test.describe("Negative Login Scenarious", () => {
@@ -15,7 +15,7 @@ test.describe("Negative Login Scenarious", () => {
     })
 
     test("Login with locked_out_user", async ({ page }) => {
-        await loginPage.LoginToApplication(UserCredencislas.LOCKED_OUT_USER);
+        await loginPage.LoginToApplication(process.env.LOCKED_OUT_USER);
         await loginPage.validateErrorMessage(ErrorMessages.LOGIN_WITH_LOCKED_USER);
         await loginPage.validateElementText(page.locator(''), 'haha');
 
@@ -28,7 +28,7 @@ test.describe("Negative Login Scenarious", () => {
     })
 
     test("Login with incorrect password", async ({ page }) => {
-        await loginPage.LoginToApplication(UserCredencislas.STANDARD_USER, "incorrectpassword");
+        await loginPage.LoginToApplication(process.env.STANDARD_USER, "incorrectpassword");
         await loginPage.validateErrorMessage(ErrorMessages.LOGIN_WITH_INCORRECT_CREDENTIALS);
 
     })

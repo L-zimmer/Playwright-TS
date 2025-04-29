@@ -1,7 +1,5 @@
 import { test } from '@playwright/test';
 import LoginPage from '../pages/LoginPage';
-import UserCredencislas from '../helpers/UserCredencials';
-import { ErrorMessages } from '../helpers/ErrorMessages';
 import ApplicationURL from '../helpers/ApplicationURL';
 
 
@@ -15,7 +13,7 @@ test.describe("Positive Login Scenarious", () => {
     })
 
     test("Login with standard_user", async ({ page }) => {
-        await loginPage.LoginToApplication(UserCredencislas.STANDARD_USER);
+        await loginPage.LoginToApplication(process.env.STANDARD_USER, process.env.CORRECT_PASSWORD);
         await loginPage.validatePageUrl(ApplicationURL.INVENTORY_PAGE_URL);
 
 
@@ -23,12 +21,12 @@ test.describe("Positive Login Scenarious", () => {
     })
 
     test("Login with problem_user", async ({ page }) => {
-        await loginPage.LoginToApplication(UserCredencislas.PROBLEM_USER);
+        await loginPage.LoginToApplication(process.env.PROBLEM_USER, process.env.CORRECT_PASSWORD);
         await loginPage.validatePageUrl(ApplicationURL.INVENTORY_PAGE_URL);
     })
 
     test("Login with visual_user", async ({ page }) => {
-        await loginPage.LoginToApplication(UserCredencislas.VISUAL_USER);
+        await loginPage.LoginToApplication(process.env.VISUAL_USER, process.env.CORRECT_PASSWORD);
         await loginPage.validatePageUrl(ApplicationURL.INVENTORY_PAGE_URL);
 
     })

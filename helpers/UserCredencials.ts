@@ -13,3 +13,7 @@ export default class UserCredencislas {
        
 
 }
+export function PROBLEM_USER(PROBLEM_USER: any, CORRECT_PASSWORD: any) {
+    throw new Error('Function not implemented.');
+}
+
