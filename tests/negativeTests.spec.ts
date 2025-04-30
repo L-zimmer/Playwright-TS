@@ -17,9 +17,7 @@ test.describe("Negative Login Scenarious", () => {
     test("Login with locked_out_user", async ({ page }) => {
         await loginPage.LoginToApplication(process.env.LOCKED_OUT_USER);
         await loginPage.validateErrorMessage(ErrorMessages.LOGIN_WITH_LOCKED_USER);
-        await loginPage.validateElementText(page.locator(''), 'haha');
-
-
+        
     })
 
     test("Login with incorrect username", async ({ page }) => {
